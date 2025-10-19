@@ -100,15 +100,21 @@
   }
 }
 
-.logo img {
-  transition: transform 0.3s ease;
-}
+.logo {
+  img {
+    transition: transform 0.3s ease;
 
-.logo img.rotate {
-  animation: spin 6s linear infinite;
+    &.rotate {
+      animation: spin 6s linear infinite;
+    }
+  }
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
