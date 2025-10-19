@@ -4455,4 +4455,7 @@ p {
     top: 0;
     left: 0;
   }
+}
+#typed {
+  display: inline-block; /* Needed for flip effect */
 }/*# sourceMappingURL=style.css.map */

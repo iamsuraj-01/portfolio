@@ -18,6 +18,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="css/tobii.min.css" rel="stylesheet" type="text/css" />
         <link href="css/tiny-slider.css" rel="stylesheet" type="text/css" />
+        <!-- Animate.css for flip animations -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link href="css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
         <link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css" rel="stylesheet" />
         <!-- Main Css -->
@@ -499,8 +501,8 @@
                     <div class="row align-items-center">
                         <div class="col-sm-2">
                             <div class="text-sm-start text-center">
-                                <a href="#">
-                                    <img src="images/logo.png" height="26" alt="">
+                                <a class="logo" href="index.html">
+                                    <img src="images/logo.png" class="logo-light-mode rotate" alt="">
                                 </a>
                             </div>
                         </div><!--end col-->
@@ -508,7 +510,7 @@
                         <div class="col-sm-6 mt-4 mt-sm-0">
                             <div class="text-center">
                                 <p class="mb-0 text-muted">
-                                    <script>document.write(new Date().getFullYear())</script> © Work with Suraj <i class="mdi mdi-weather-sunny text-primary"></i>
+                                    <script>document.write(new Date().getFullYear())</script> © Work with Suraj
                                 </p>
 
                             </div>
@@ -603,15 +605,52 @@
         <script src="js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
         <script src="js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 
+        <!-- Flip animation script -->
         <script>
-            var typed = new Typed('#typed', {
-                stringsElement: '#typed-strings',
-                typeSpeed: 200,
-                loop: true,
-                strings: [
-                    'Suraj Semwal', 'Frontend Web Developer', 'IT Professional',
-                ],
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+            // List of words to display
+            const words = [
+                "Suraj Semwal",
+                "Frontend Web Developer",
+                "IT Professional"
+            ];
+
+            let current = 0;
+
+            // Target the span inside Elementor heading
+            const typedEl = document.querySelector("#typed");
+            if (!typedEl) return; // Safety check
+
+            // Initialize with the first word
+            typedEl.textContent = words[current];
+            typedEl.classList.add("animate__animated", "animate__flipInX");
+
+            function nextWord() {
+                // Animate out
+                typedEl.classList.remove("animate__flipInX");
+                typedEl.classList.add("animate__flipOutX");
+
+                // Wait for flip-out animation to finish
+                typedEl.addEventListener("animationend", function handler() {
+                    typedEl.removeEventListener("animationend", handler);
+
+                    // Move to the next word
+                    current = (current + 1) % words.length;
+                    typedEl.textContent = words[current];
+
+                    // Reset animation
+                    typedEl.classList.remove("animate__flipOutX");
+
+                    // Force reflow to restart animation
+                    void typedEl.offsetWidth;
+
+                    typedEl.classList.add("animate__flipInX");
+                });
+            }
+
+            // Repeat every 2.2 seconds (slightly longer than animation duration)
+            setInterval(nextWord, 2200);
+        });
         </script>
     </body>
 </html>
