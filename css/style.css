@@ -4389,6 +4389,21 @@ p {
   border-color: #ced4da;
 }
 
+.logo img {
+  transition: transform 0.3s ease;
+}
+.logo img.rotate {
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .fancy-border {
   position: relative;
   display: inline-block;
@@ -4409,8 +4424,11 @@ p {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  /*
+  // Sun-like glowing dot
   background: radial-gradient(circle, #FFD54F, #FFB300, #FFA000);
   box-shadow: 0 0 10px #FFD54F, 0 0 20px #FFB300;
+  */
   top: 0;
   left: 0;
   animation: move-border 6s linear infinite;

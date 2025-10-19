@@ -44,6 +44,26 @@
 @import "contact";
 @import "footer";
 
+// Navbar Section
+.logo {
+  img {
+    transition: transform 0.3s ease;
+
+    &.rotate {
+      animation: spin 6s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 // Hero Section
 .fancy-border {
   position: relative;
@@ -67,9 +87,11 @@
     height: 20px;
     border-radius: 50%;
 
+    /*
     // Sun-like glowing dot
     background: radial-gradient(circle, #FFD54F, #FFB300, #FFA000);
     box-shadow: 0 0 10px #FFD54F, 0 0 20px #FFB300;
+    */
 
     top: 0;
     left: 0;
@@ -97,24 +119,5 @@
   100% {
     top: 0;
     left: 0;
-  }
-}
-
-.logo {
-  img {
-    transition: transform 0.3s ease;
-
-    &.rotate {
-      animation: spin 6s linear infinite;
-    }
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
